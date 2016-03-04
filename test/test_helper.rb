@@ -11,10 +11,11 @@ class ActiveSupport::TestCase
   end
 
   def log_in_as(user, options = {})
+    email = user.email
     password    = options[:password]    || 'password'
     remember_me = options[:remember_me] || '1'
     if integration_test?
-      post login_path, session: { email:       user.email,
+      post login_path, session: { email:       email,
                                   password:    password,
                                   remember_me: remember_me }
     else
